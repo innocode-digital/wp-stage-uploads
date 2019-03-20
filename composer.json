@@ -1,0 +1,14 @@
+{
+    "name": "innocode-digital/wp-stage-uploads",
+    "type": "wordpress-plugin",
+    "require": {
+        "php": "^7.0",
+        "composer/installers": "^1.6"
+    },
+    "authors": [
+        {
+            "name": "Viktor Kuliebiakin",
+            "email": "viktor.kuliebiakin@innocode.no"
+        }
+    ]
+}
