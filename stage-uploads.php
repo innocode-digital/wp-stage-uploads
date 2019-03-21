@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Stage Uploads
  * Description: Replaces local uploads URL.
- * Version:  0.1.0
+ * Version:  0.1.1
  * Author: Innocode
  * Author URI: https://innocode.com
  * Tested up to: 5.1.1
@@ -11,7 +11,10 @@
  */
 
 // stage only
-if ( defined( 'ENVIRONMENT' ) && ENVIRONMENT == 'production' ) {
+if (
+    defined( 'ENVIRONMENT' ) && ENVIRONMENT == 'production'
+    || defined( 'WP_ENV' ) && WP_ENV == 'production'
+) {
     return;
 }
 
@@ -31,10 +34,11 @@ function stage_uploads_url_filter( $uri ) {
 
         if ( ! file_exists( $local_path ) ) {
             $prod_uri = $prod_upload_dir_baseurl . $relative;
+
             return $prod_uri;
         }
-
     }
+
     return $uri;
 }
 
@@ -58,10 +62,8 @@ add_action( 'admin_init', function () {
 add_filter( 'wp_get_attachment_url', 'stage_uploads_url_filter', 99 );
 
 add_filter( 'wp_calculate_image_srcset', function ( $sources ) {
-    if ( is_array( $sources ) ) {
-        foreach ( $sources as $key => $source ) {
-            $sources[ $key ]['url'] = stage_uploads_url_filter( $source['url'] );
-        }
+    foreach ( $sources as $key => $source ) {
+        $sources[ $key ]['url'] = stage_uploads_url_filter( $source['url'] );
     }
 
     return $sources;
