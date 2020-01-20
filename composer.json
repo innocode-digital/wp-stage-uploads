@@ -1,18 +1,20 @@
 {
-    "name": "innocode-digital/wp-stage-uploads",
-    "type": "wordpress-plugin",
-    "require": {
-        "php": "^7.0",
-        "composer/installers": "^1.6"
+  "name": "innocode-digital/wp-stage-uploads",
+  "type": "wordpress-plugin",
+  "require": {
+    "php": "^7.0",
+    "composer/installers": "^1.6",
+    "ext-mbstring": "*"
+  },
+  "authors": [
+    {
+      "name": "Innocode",
+      "email": "post@innocode.no",
+      "homepage": "https://innocode.com/"
     },
-    "authors": [
-        {
-            "name": "Innocode",
-            "email": "post@innocode.no",
-            "homepage": "https://innocode.com/"
-        }, {
-            "name": "Viktor Kuliebiakin",
-            "email": "kuliebiakin@gmail.com"
-        }
-    ]
+    {
+      "name": "Viktor Kuliebiakin",
+      "email": "kuliebiakin@gmail.com"
+    }
+  ]
 }
