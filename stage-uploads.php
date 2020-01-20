@@ -88,6 +88,10 @@ add_filter( 'wp_calculate_image_srcset', function ( $sources, $size_array, $imag
 
 add_filter( 'wp_get_attachment_image_src', function ( $image, $attachment_id, $size ) {
     if ( false !== $image ) {
+        if ( is_array( $size ) ) {
+            $size = implode( 'x', $size );
+        }
+
         $image[0] = stage_uploads_url_filter( $image[0], "$attachment_id:$size" );
     }
 
